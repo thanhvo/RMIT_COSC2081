@@ -145,7 +145,7 @@ public class RobotControl implements Control
 	// Compute the next height upto a given column
 	private int getNextHeight(int column, int blockHeight) {
 		int nextHeight = leftHeight;
-		for (int i = 0; i < column; i++) {
+		for (int i = 0; i <= column; i++) {
 			if (nextHeight < barHeights[i] + blockHeight) nextHeight = barHeights[i] + blockHeight;
 		}
 		return nextHeight + 1;
@@ -224,7 +224,7 @@ public class RobotControl implements Control
 		
 		// Move to the target column
 		for (int w = 0; w < currentCol + 1; w++) {
-			int nextHeight = barHeights[w] + blockHeight + 1;
+			int nextHeight = getNextHeight(w, blockHeight);
 			if (nextHeight > height) {
 				for (int h = height; h < nextHeight; h++) robot.up();
 				height = nextHeight;
